@@ -32,7 +32,7 @@ services:
     networks:
       - es-net
     depends_on:
-      - kibana
+      - elasticsearch
 
 networks:
   es-net:

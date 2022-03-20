@@ -1,5 +1,6 @@
 FROM node:16
 
+    EXPOSE 8080
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -19,11 +20,8 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-
 # Bundle app source
 COPY . .
 
-COPY --chown=root:heartbeat heartbeat.yml /usr/share/heartbeat/heartbeat.yml
+COPY --chown=root:heartbeat heartbeat.yml /etc/heartbeat/heartbeat.yml
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
-
-EXPOSE 8080
-CMD [ "npm", "start" ]
